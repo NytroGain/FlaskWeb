@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title>TISCO</title>
+        <link rel="icon" href="รูป/Logo_TISCO.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='scriptFile.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery-3.3.1.js') }}"></script>
+
+    </head>
+    <body class="container">
+       <div class="container">
+           <h1>การเตรียมข้อมูล</h1>
+           <div class="border border-secondary p-3">
+                <h5>อายุลูกค้า <small>แบ่งเป็น 4 ช่วง</small></h5>
+                <ul>
+                    <li><h6>น้อยกว่า21.5</h6></li>
+                    <li><h6>ระหว่าง21.5-31.5</h6></li>
+                    <li><h6>ระหว่าง31.5-44.5</h6></li>
+                    <li><h6>มากกว่า44.5</h6></li>
+                </ul>
+                <h5 class="mt-2">อายุรถยนต์ <small>แบ่งเป็น 6 ช่วง</small></h5>
+                <ul>
+                    <li><h6>น้อยกว่า3.5</h6></li>
+                    <li><h6>ระหว่าง3.5-4.5</h6></li>
+                    <li><h6>ระหว่าง4.5-5.5</h6></li>
+                    <li><h6>ระหว่าง5.5-7.5</h6></li>
+                    <li><h6>ระหว่าง7.5-17.5</h6></li>
+                    <li><h6>มากกว่า17.5</h6></li>
+                </ul>
+                <h5 class="mt-2">ภูมิภาค <small>แบ่งเป็น 6 ภาค</small></h5>
+                <ul>
+                    <li><h6>เหนือ</h6></li>
+                    <li><h6>ใต้</h6></li>
+                    <li><h6>กลาง</h6></li>
+                    <li><h6>ตะวันตก</h6></li>
+                    <li><h6>ตะวันออก</h6></li>
+                    <li><h6>ตะวันออกเฉียงเหนือ</h6></li>
+                </ul>
+                <h5 class="mt-2">ประเภทรถยนต์ที่ทำประกัน <small>แบ่งเป็น 25 ประเภท</small></h5>
+                <ul>
+                    <li><h6>BUS</h6></li>
+                    <li><h6>CAR</h6></li>
+                    <li><h6>MICRO BUS (PUBLIC)</h6></li>
+                    <li><h6>MICRO BUS (จด รย.2)</h6></li>
+                    <li><h6>MICRO BUS (จด รย.3)</h6></li>
+                    <li><h6>MOTORCYCLE</h6></li>
+                    <li><h6>OTHER</h6></li>
+                    <li><h6>PICK-UP</h6></li>
+                    <li><h6>PICK-UP (CONTAINER,MODIFIED)</h6></li>
+                    <li><h6>PICK-UP (จด รย.2)</h6></li>
+                    <li><h6>PICK-UP 4 DOORS(จด รย.1)</h6></li>
+                    <li><h6>PICK-UP 4 DOORS(จด รย.2)</h6></li>
+                    <li><h6>PICK-UP(จดทะเบียนเป็นรถกระบะ1.6ตัน)</h6></li>
+                    <li><h6>PICK-UP(จดทะเบียนเป็นรถกระบะ2.2ตัน)</h6></li>
+                    <li><h6>SEMI-TRAILER</h6></li>
+                    <li><h6>TRAILER</h6></li>
+                    <li><h6>TRAILER WITH DUMP</h6></li>
+                    <li><h6>TRUCK 10 WHEELS</h6></li>
+                    <li><h6>TRUCK 10 WHEELS(CONTAINER,MODIFIED)</h6></li>
+                    <li><h6>TRUCK 4 WHEELS</h6></li>
+                    <li><h6>TRUCK 4 WHEELS (CONTAINER,MODIFIED)</h6></li>
+                    <li><h6>TRUCK 6 WHEELS</h6></li>
+                    <li><h6>TRUCK 6 WHEELS (CONTAINER,MODIFIED)</h6></li>
+                    <li><h6>TRUCK 6 WHEELS WITH CONCRETE MIXER</h6></li>
+                    <li><h6>TRUCK-HEAD</h6></li>
+                </ul>
+                <h5 class="mt-2">รถใช้แล้วหรือรถใหม่ <small>แบ่งเป็น 2 คำตอบ</small></h5>
+                <ul>
+                    <li><h6>NEW CAR</h6></li>
+                    <li><h6>USED CAR</h6></li>
+                </ul>
+                <h5 class="mt-2">รอบที่ต่อประกันรถยนต์ <small>แบ่งเป็น 5 ช่วง</small></h5>
+                <ul>
+                    <li><h6>น้อยกว่า3.5</h6></li>
+                    <li><h6>ระหว่าง3.5-4.5</h6></li>
+                    <li><h6>ระหว่าง4.5-5.5</h6></li>
+                    <li><h6>ระหว่าง5.5-7.5</h6></li>
+                    <li><h6>มากกว่า7.5</h6></li>
+                </ul>
+                <h5 class="mt-2">ประเภทประกันที่ต่อรถยนต์ <small>แบ่งเป็น 32 ประเภท</small></h5>
+                <ul>
+                    <li><h6>"Zero"     คือ รหัส 0</h6></li>
+                    <li><h6>"One"      คือ รหัส 1</h6></li>
+                    <li><h6>"Tree"     คือ รหัส 3</h6></li>
+                    <li><h6>"Six"      คือ รหัส 6</h6></li>
+                    <li><h6>"Seven"    คือ รหัส 7</h6></li>
+                    <li><h6>"Eight"    คือ รหัส 8</h6></li>
+                    <li><h6>"Nine"     คือ รหัส 9</h6></li>
+                    <li><h6>"OneZero"  คือ รหัส 10</h6></li>
+                    <li><h6>"OneTree"  คือ รหัส 13</h6></li>
+                    <li><h6>"OneFive"  คือ รหัส 15</h6></li>
+                    <li><h6>"OneSix"   คือ รหัส 16</h6></li>
+                    <li><h6>"OneEight" คือ รหัส 18</h6></li>
+                    <li><h6>"OneNine"  คือ รหัส 19</h6></li>
+                    <li><h6>"TwoFour"  คือ รหัส 24</h6></li>
+                    <li><h6>"TwoSix"   คือ รหัส 26</h6></li>
+                    <li><h6>"TwoSeven" คือ รหัส 27</h6></li>
+                    <li><h6>"TwoNine"  คือ รหัส 29</h6></li>
+                    <li><h6>"TreeZeo"  คือ รหัส 30</h6></li>
+                    <li><h6>"TreeTwo"  คือ รหัส 32</h6></li>
+                    <li><h6>"TreeTree" คือ รหัส 33</h6></li>
+                    <li><h6>"TreeSeven"คือ รหัส 37</h6></li>
+                    <li><h6>"FourZero" คือ รหัส 40</h6></li>
+                    <li><h6>"FourOne"  คือ รหัส 41</h6></li>
+                    <li><h6>"FiveZero" คือ รหัส 50</h6></li>
+                    <li><h6>"FiveOne"  คือ รหัส 51</h6></li>
+                    <li><h6>"FiveTwo"  คือ รหัส 52</h6></li>
+                    <li><h6>"FiveTree" คือ รหัส 53</h6></li>
+                    <li><h6>"FiveFour" คือ รหัส 54</h6></li>
+                    <li><h6>"FiveSix"  คือ รหัส 56</h6></li>
+                    <li><h6>"SixOne"   คือ รหัส 61</h6></li>
+                    <li><h6>"SixTree"  คือ รหัส 63</h6></li>
+                    <li><h6>"SixSix"   คือ รหัส 66</h6></li>
+                </ul>
+                <h5 class="mt-2">ค่าเบี้ยจ่ายประกันรถยนต์ <small>แบ่งเป็น 22 ช่วง</small></h5>
+                <ul>
+                    <li><h6>"ONE"       คือ น้อยกว่า 1355.36</h6></li>
+                    <li><h6>"TWO"       คือ ระหว่าง 1355.36-3057.1</h6></li>
+                    <li><h6>"TREE"      คือ ระหว่าง 3057.1-5049.455</h6></li>
+                    <li><h6>"FOUR"      คือ ระหว่าง 5049.455-5544.895</h6></li>
+                    <li><h6>"FIVE"      คือ ระหว่าง 5544.895-5897.36</h6></li>
+                    <li><h6>"SIX"       คือ ระหว่าง 5897.36-6196.35</h6></li>
+                    <li><h6>"SEVEN"     คือ ระหว่าง 6196.35-6207.36</h6></li>
+                    <li><h6>"EIGHT"     คือ ระหว่าง 6207.36-6354.895</h6></li>
+                    <li><h6>"NINE"      คือ ระหว่าง 6354.895-6374.36</h6></li>
+                    <li><h6>"ONEZERO"   คือ ระหว่าง 6374.36-6749.5</h6></li>
+                    <li><h6>"ONEONE"    คือ ระหว่าง 6749.5-7498.29</h6></li>
+                    <li><h6>"ONETWO"    คือ ระหว่าง 7498.29-7501.385</h6></li>
+                    <li><h6>"ONETREE"   คือ ระหว่าง 7501.385-8299.995</h6></li>
+                    <li><h6>"ONEFOUR"   คือ ระหว่าง 8299.995-8303.86</h6></li>
+                    <li><h6>"ONEFIVE"   คือ ระหว่าง 8303.86-11952.895</h6></li>
+                    <li><h6>"ONESIX"    คือ ระหว่าง 11952.895-13249.755</h6></li>
+                    <li><h6>"ONESEVEN"  คือ ระหว่าง 13249.755-14693.945</h6></li>
+                    <li><h6>"ONEEIGHT"  คือ ระหว่าง 14693.945-18360.29</h6></li>
+                    <li><h6>"ONENINE"   คือ ระหว่าง 18360.29-18500.755</h6></li>
+                    <li><h6>"TWOZERO"   คือ ระหว่าง 18500.755-18522.255</h6></li>
+                    <li><h6>"TWOONE"    คือ ระหว่าง 18522.255-30674.29</h6></li>
+                    <li><h6>"TWOTWO"    คือ มากกว่า 30674.29</h6></li>
+                </ul>
+                <h5 class="mt-2">การจัดซ่อม <small>แบ่งเป็น 2 คำตอบ</small></h5>
+                <ul>
+                    <li><h6>"One"   คือ 1</h6></li>
+                    <li><h6>"Zero"  คือ 0</h6></li>
+                </ul>
+                <h5 class="mt-2">ประเภทการชำระ <small>แบ่งเป็น 4 แบบ</small></h5>
+                <ul>
+                    <li><h6>"PT1"   คือ รหัส 1</h6></li>
+                    <li><h6>"PT2"   คือ รหัส 2</h6></li>
+                    <li><h6>"PT3"   คือ รหัส 3</h6></li>
+                    <li><h6>"PT4"   คือ รหัส 4</h6></li>
+                </ul>
+                <h5 class="mt-2">วิธีการชำระ <small>แบ่งเป็น 15 แบบ</small></h5>
+                <ul>
+                    <li><h6>"PB0"   คือ รหัส 0</h6></li>
+                    <li><h6>"PB1"   คือ รหัส 1</h6></li>
+                    <li><h6>"PB2"   คือ รหัส 2</h6></li>
+                    <li><h6>"PB3"   คือ รหัส 3</h6></li>
+                    <li><h6>"PB4"   คือ รหัส 4</h6></li>
+                    <li><h6>"PB5"   คือ รหัส 5</h6></li>
+                    <li><h6>"PB6"   คือ รหัส 6</h6></li>
+                    <li><h6>"PB7"   คือ รหัส 7</h6></li>
+                    <li><h6>"PB9"   คือ รหัส 9</h6></li>
+                    <li><h6>"PB10"  คือ รหัส 10</h6></li>
+                    <li><h6>"PB12"  คือ รหัส 12</h6></li>
+                    <li><h6>"PB13"  คือ รหัส 13</h6></li>
+                    <li><h6>"PB14"  คือ รหัส 14</h6></li>
+                    <li><h6>"PB20"  คือ รหัส 20</h6></li>
+                    <li><h6>"PB23"  คือ รหัส 23</h6></li>
+                </ul>
+           </div>
+       </div>
+    </body>
+</html>

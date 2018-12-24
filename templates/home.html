@@ -1,0 +1,326 @@
+<html>
+    <head>
+        <title>TISCO</title>
+        <link rel="icon" href="{{ url_for('static', filename='Logo_TISCO.jpg') }}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='scriptFile.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery-3.3.1.js') }}"></script>
+        <script>
+            function disbtn(){
+                document.getElementById("btn1").disabled = false;
+            }
+        </script>
+
+    </head>
+    <body class="container" ondragstart="return false">
+        <!----------------------------- INPUT PART ------------------------------->
+        <div class="container text-center border border-dark p-3 shadow-lg  mt-5 col-lg-12 row">     <!--  -->
+            <div class="col-lg-12 row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <form action = "http://localhost:5000/uploaderzwei" method = "POST"
+                        enctype = "multipart/form-data">
+                        <h1 class="mb-3">FILE INPUT</h1>
+                        <input type = "file" name = "file" onchange="disbtn()"/><br>
+                        <input type = "submit" class="btn btn-primary bg-lg mt-3" disabled="disabled" id="btn1"/>
+                    </form>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{{ url_for('static', filename='CSV-icon-new.png') }}" alt="csv" style="width: 100px; height: 100px;">
+                </div>
+            </div>
+            <div class="col-lg-12 mt-3" align="center">
+                <div class="col-lg-8 bg-light">
+                    <h3 class="text-danger">ข้อควรระวังก่อนใช้งาน</h3>
+                    <h5 class="text-dark">กรุณาเตรียมไฟล์ข้อมูลดังนี้</h5>
+                    <ul>
+                        <li class="text-left"><h6>ข้อมูลที่จำเป็น: <span onclick="alert('จังหวัด อายุลูกค้า อายุรถยนต์ ประเภทรถยนต์ รถใหม่หรือรถใช้แล้ว รอบที่ต่อประกันรถยนต์ ประเภทประกันที่ต่อรถยนต์ ค่าเบี้ยจ่ายประกันรถยนต์ บริษัทประกันรถยนต์ การจัดซ่อม ประเภทการชำระ วิธีการชำระ')">click</span></h6></li>
+                        <li class="text-left">การเตรียมข้อมูล: <span onclick="window.open('http://localhost:5000/Preprocess', '', 'width=600,height=800')">click</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------MANUAL INPUT----------------------------------- -->
+        <div class="container text-center border border-dark p-3 shadow-lg  mt-2 col-lg-12 row">
+            <div class="row col-lg-12">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <h1>MANUAL INPUT</h1>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+            <div class="col-lg-12 center-block" align="center">
+                <form class="form-group">
+                    <div class="row col-lg-12 text-left"> <!-- อินพุต 3 ตัวแรก แถวแรก -->
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">อายุคน:</h6>
+                            <select id="AGE" class="form-control col-lg-10">
+                                <option value="น้อยกว่า21.5"><h6>น้อยกว่า 21.5 ปี</h6></option>
+                                <option value="ระหว่าง21.5-31.5"><h6>ระหว่าง 21.5-31.5 ปี</h6></option>
+                                <option value="ระหว่าง31.5-44.5"><h6>ระหว่าง 31.5-44.5 ปี</h6></option>
+                                <option value="มากกว่า44.5"><h6>มากกว่า 44.5 ปี</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">ภูมิภาค:</h6>
+                            <select id="REGION" class="form-control col-lg-10">
+                                <option value="กลาง"><h6>กลาง</h6></option>
+                                <option value="ใต้"><h6>ใต้</h6></option>
+                                <option value="เหนือ"><h6>เหนือ</h6></option>
+                                <option value="ตะวันออก"><h6>ตะวันออก</h6></option>
+                                <option value="ตะวันตก"><h6>ตะวันตก</h6></option>
+                                <option value="ตะวันออกเฉียงเหนือ"><h6>ตะวันออกเฉียงเหนือ</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4  m-0">
+                            <h6 class="mr-1 col-lg-10">รถใหม่:</h6>
+                            <select id="NEW_USED_" class="form-control col-lg-10">
+                                <option value="NEW CAR"><h6>ใช่</h6></option>
+                                <option value="USED CAR"><h6>ไม่ใช่</h6></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-------------------------------- จบแถวแรก --------------------------------------->
+
+
+                    <div class="row col-lg-12 text-left mt-2"> <!-- อินพุต 3 ตัวต่อมา แถวสอง -->
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">อายุรถ:</h6>
+                            <select id="YEAR_OF_PRODUCT" class="form-control col-lg-10">
+                                <option value="น้อยกว่า3.5"><h6>น้อยกว่า 3.5 ปี</h6></option>
+                                <option value="ระหว่าง3.5-4.5"><h6>ระหว่าง 3.5-4.5 ปี</h6></option>
+                                <option value="ระหว่าง4.5-5.5"><h6>ระหว่าง 4.5-5.5 ปี</h6></option>
+                                <option value="ระหว่าง5.5-7.5"><h6>ระหว่าง 5.5-7.5 ปี</h6></option>
+                                <option value="ระหว่าง7.5-17.5"><h6>ระหว่าง 7.5-17.5 ปี</h6></option>
+                                <option value="มากกว่า17.5"><h6>มากกว่า 17.5 ปี</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">ประเภทรถ:</h6>
+                            <select id="TYPE_PRODUCT" class="form-control col-lg-10">
+                                <option value="BUS"><h6>BUS</h6></option>
+                                <option value="CAR"><h6>CAR</h6></option>
+                                <option value="MICRO BUS (PUBLIC)"><h6>MICRO BUS (PUBLIC)</h6></option>
+                                <option value="MICRO BUS (จด รย.2)"><h6>MICRO BUS (จด รย.2)</h6></option>
+                                <option value="MICRO BUS (จด รย.3)"><h6>MICRO BUS (จด รย.3)</h6></option>
+                                <option value="MOTORCYCLE"><h6>MOTORCYCLE</h6></option>
+                                <option value="OTHER"><h6>OTHER</h6></option>
+                                <option value="PICK-UP"><h6>PICK-UP</h6></option>
+                                <option value="PICK-UP (CONTAINER,MODIFIED)"><h6>PICK-UP (CONTAINER,MODIFIED)</h6></option>
+                                <option value="PICK-UP (จด รย.2)"><h6>PICK-UP (จด รย.2)</h6></option>
+                                <option value="PICK-UP 4 DOORS(จด รย.1)"><h6>PICK-UP 4 DOORS(จด รย.1)</h6></option>
+                                <option value="PICK-UP 4 DOORS(จด รย.2)"><h6>PICK-UP 4 DOORS(จด รย.2)</h6></option>
+                                <option value="PICK-UP(จดทะเบียนเป็นรถกระบะ1.6ตัน)"><h6>PICK-UP(จดทะเบียนเป็นรถกระบะ1.6ตัน)</h6></option>
+                                <option value="PICK-UP(จดทะเบียนเป็นรถกระบะ2.2ตัน)"><h6>PICK-UP(จดทะเบียนเป็นรถกระบะ2.2ตัน)</h6></option>
+                                <option value="SEMI-TRAILER"><h6>SEMI-TRAILER</h6></option>
+                                <option value="TRAILER"><h6>TRAILER</h6></option>
+                                <option value="TRAILER WITH DUMP"><h6>TRAILER WITH DUMP</h6></option>
+                                <option value="TRUCK 10 WHEELS"><h6>TRUCK 10 WHEELS</h6></option>
+                                <option value="TRUCK 10 WHEELS(CONTAINER,MODIFIED)"><h6>TRUCK 10 WHEELS(CONTAINER,MODIFIED)</h6></option>
+                                <option value="TRUCK 4 WHEELS"><h6>TRUCK 4 WHEELS</h6></option>
+                                <option value="TRUCK 4 WHEELS (CONTAINER,MODIFIED)"><h6>TRUCK 4 WHEELS (CONTAINER,MODIFIED)</h6></option>
+                                <option value="TRUCK 6 WHEELS"><h6>TRUCK 6 WHEELS</h6></option>
+                                <option value="TRUCK 6 WHEELS (CONTAINER,MODIFIED)"><h6>TRUCK 6 WHEELS (CONTAINER,MODIFIED)</h6></option>
+                                <option value="TRUCK 6 WHEELS WITH CONCRETE MIXER"><h6>TRUCK 6 WHEELS WITH CONCRETE MIXER</h6></option>
+                                <option value="TRUCK-HEAD"><h6>TRUCK-HEAD</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4  m-0">
+                            <h6 class="mr-1 col-lg-10">รอบที่ต่อประกันรถยนต์:</h6>
+                            <select id="COM_ROUND" class="form-control col-lg-10">
+                                <option value="น้อยกว่า3.5"><h6>น้อยกว่า3.5</h6></option>
+                                <option value="ระหว่าง3.5-4.5"><h6>ระหว่าง3.5-4.5</h6></option>
+                                <option value="ระหว่าง4.5-5.5"><h6>ระหว่าง4.5-5.5</h6></option>
+                                <option value="ระหว่าง5.5-7.5"><h6>ระหว่าง5.5-7.5</h6></option>
+                                <option value="มากกว่า7.5"><h6>มากกว่า7.5</h6></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--------------------------------- จบแถว2 --------------------------------------------->
+
+                    <div class="row col-lg-12 text-left mt-2"> <!-- อินพุต 3 ตัวต่อมา แถวสาม -->
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">ประเภทประกันที่ต่อรถยนต์:</h6>
+                            <select id="T25_COM_TYPE_COVERAGE" class="form-control col-lg-10">
+                                <option value="Zero"><h6>0</h6></option>
+                                <option value="One"><h6>1</h6></option>
+                                <option value="Tree"><h6>3</h6></option>
+                                <option value="Six"><h6>6</h6></option>
+                                <option value="Seven"><h6>7</h6></option>
+                                <option value="Eight"><h6>8</h6></option>
+                                <option value="Nine"><h6>9</h6></option>
+                                <option value="OneZero"><h6>10</h6></option>
+                                <option value="OneTree"><h6>13</h6></option>
+                                <option value="OneFive"><h6>15</h6></option>
+                                <option value="OneSix"><h6>16</h6></option>
+                                <option value="OneEight"><h6>18</h6></option>
+                                <option value="OneNine"><h6>19</h6></option>
+                                <option value="TwoFour"><h6>24</h6></option>
+                                <option value="TwoSix"><h6>26</h6></option>
+                                <option value="TwoSeven"><h6>27</h6></option>
+                                <option value="TwoNine"><h6>29</h6></option>
+                                <option value="TreeZeo"><h6>30</h6></option>
+                                <option value="TreeTwo"><h6>32</h6></option>
+                                <option value="TreeTree"><h6>33</h6></option>
+                                <option value="TreeSeven"><h6>37</h6></option>
+                                <option value="FourZero"><h6>40</h6></option>
+                                <option value="FourOne"><h6>41</h6></option>
+                                <option value="FiveZero"><h6>50</h6></option>
+                                <option value="FiveOne"><h6>51</h6></option>
+                                <option value="FiveTwo"><h6>52</h6></option>
+                                <option value="FiveTree"><h6>53</h6></option>
+                                <option value="FiveFour"><h6>54</h6></option>
+                                <option value="FiveSix"><h6>56</h6></option>
+                                <option value="SixOne"><h6>61</h6></option>
+                                <option value="SixTree"><h6>63</h6></option>
+                                <option value="SixSix"><h6>66</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">ค่าเบี้ยจ่ายประกันรถยนต์:</h6>
+                            <select id="COM_CONFIRM" class="form-control col-lg-10">
+                                <option value="ONE"><h6>น้อยกว่า 1,355.36</h6></option>
+                                <option value="TWO"><h6>ระหว่าง 1,355.36 - 3,057.1</h6></option>
+                                <option value="TREE"><h6>ระหว่าง 3,057.1 - 5,049.455</h6></option>
+                                <option value="FOUR"><h6>ระหว่าง 5,049.455 - 5,544.895</h6></option>
+                                <option value="FIVE"><h6>ระหว่าง 5,544.895 - 5,897.36</h6></option>
+                                <option value="SIX"><h6>ระหว่าง 5,897.36 - 6,196.35</h6></option>
+                                <option value="SEVEN"><h6>ระหว่าง 6,196.35 - 6,207.36</h6></option>
+                                <option value="EIGHT"><h6>ระหว่าง 6,207.36 - 6,354.895</h6></option>
+                                <option value="NINE"><h6>ระหว่าง 6,354.895 - 6,374.36</h6></option>
+                                <option value="ONEZERO"><h6>ระหว่าง 6,374.36 - 6,749.5</h6></option>
+                                <option value="ONEONE"><h6>ระหว่าง 6,749.5 - 7,498.29</h6></option>
+                                <option value="ONETWO"><h6>ระหว่าง 7,498.29 - 7,501.385</h6></option>
+                                <option value="ONETREE"><h6>ระหว่าง 7,501.385 - 8,299.995</h6></option>
+                                <option value="ONEFOUR"><h6>ระหว่าง 8,299.995 - 8,303.86</h6></option>
+                                <option value="ONEFIVE"><h6>ระหว่าง 8,303.86 - 11,952.895</h6></option>
+                                <option value="ONESIX"><h6>ระหว่าง 11,952.895 - 13,249.755</h6></option>
+                                <option value="ONESEVEN"><h6>ระหว่าง 13,249.755 - 14,693.945</h6></option>
+                                <option value="ONEEIGHT"><h6>ระหว่าง 14,693.945 - 18,360.29</h6></option>
+                                <option value="ONENINE"><h6>ระหว่าง 18,360.29 - 18,500.755</h6></option>
+                                <option value="TWOZERO"><h6>ระหว่าง 18,500.755 - 18,522.255</h6></option>
+                                <option value="TWOONE"><h6>ระหว่าง 18,522.255 - 30,674.29</h6></option>
+                                <option value="TWOTWO"><h6>มากกว่า 30,674.29</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4  m-0">
+                            <h6 class="mr-1 col-lg-10">บริษัทประกันรถยนต์:</h6>
+                            <select id="T25_COM_INS_CODE" class="form-control col-lg-10">
+                                <option value="I329"><h6>329</h6></option>
+                                <option value="I402"><h6>402</h6></option>
+                                <option value="I403"><h6>403</h6></option>
+                                <option value="I405"><h6>405</h6></option>
+                                <option value="I406"><h6>406</h6></option>
+                                <option value="I408"><h6>408</h6></option>
+                                <option value="I410"><h6>410</h6></option>
+                                <option value="I413"><h6>413</h6></option>
+                                <option value="I414"><h6>414</h6></option>
+                                <option value="I416"><h6>416</h6></option>
+                                <option value="I417"><h6>417</h6></option>
+                                <option value="I418"><h6>418</h6></option>
+                                <option value="I423"><h6>423</h6></option>
+                                <option value="I425"><h6>425</h6></option>
+                                <option value="I427"><h6>427</h6></option>
+                                <option value="I429"><h6>429</h6></option>
+                                <option value="I430"><h6>430</h6></option>
+                                <option value="I433"><h6>433</h6></option>
+                                <option value="I435"><h6>435</h6></option>
+                                <option value="I438"><h6>438</h6></option>
+                                <option value="I444"><h6>444</h6></option>
+                                <option value="I448"><h6>448</h6></option>
+                                <option value="I450"><h6>450</h6></option>
+                                <option value="I457"><h6>457</h6></option>
+                                <option value="I461"><h6>461</h6></option>
+                                <option value="I465"><h6>465</h6></option>
+                                <option value="I502"><h6>502</h6></option>
+                                <option value="I503"><h6>503</h6></option>
+                                <option value="I505"><h6>505</h6></option>
+                                <option value="I506"><h6>506</h6></option>
+                                <option value="I508"><h6>508</h6></option>
+                                <option value="I510"><h6>510</h6></option>
+                                <option value="I513"><h6>513</h6></option>
+                                <option value="I514"><h6>514</h6></option>
+                                <option value="I516"><h6>516</h6></option>
+                                <option value="I517"><h6>517</h6></option>
+                                <option value="I518"><h6>518</h6></option>
+                                <option value="I523"><h6>523</h6></option>
+                                <option value="I524"><h6>524</h6></option>
+                                <option value="I527"><h6>527</h6></option>
+                                <option value="I529"><h6>529</h6></option>
+                                <option value="I530"><h6>530</h6></option>
+                                <option value="I533"><h6>533</h6></option>
+                                <option value="I535"><h6>535</h6></option>
+                                <option value="I538"><h6>538</h6></option>
+                                <option value="I544"><h6>544</h6></option>
+                                <option value="I548"><h6>548</h6></option>
+                                <option value="I550"><h6>550</h6></option>
+                                <option value="I557"><h6>557</h6></option>
+                                <option value="I561"><h6>561</h6></option>
+                                <option value="I565"><h6>565</h6></option>
+                                <option value="I574"><h6>574</h6></option>
+                                <option value="I629"><h6>629</h6></option>
+                                <option value="I902"><h6>902</h6></option>
+                                <option value="IY02"><h6>Y02</h6></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--------------------------------- จบแถว3 --------------------------------------------->
+                    
+                    
+                    <div class="row col-lg-12 text-left mt-2"> <!-- อินพุต 3 ตัวต่อมา แถวสี่ -->
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">การจัดซ่อม:</h6>
+                            <select id="CLAIM_CON" class="form-control col-lg-10">
+                                <option value="One"><h6>1</h6></option>
+                                <option value="Zero"><h6>2</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4 m-0">
+                            <h6 class="mr-1 col-lg-10">ประเภทการชำระ:</h6>
+                            <select id="INS_PAY_TYPE" class="form-control col-lg-10">
+                                <option value="PT1"><h6>1</h6></option>
+                                <option value="PT2"><h6>2</h6></option>
+                                <option value="PT3"><h6>3</h6></option>
+                                <option value="PT4"><h6>4</h6></option>
+                            </select>
+                        </div>
+                        <div class="row col-lg-4  m-0">
+                            <h6 class="mr-1 col-lg-10">วิธีการชำระ:</h6>
+                            <select id="INS_PAY_BY" class="form-control col-lg-10">
+                                <option value="PB0"><h6>0</h6></option>
+                                <option value="PB1"><h6>1</h6></option>
+                                <option value="PB2"><h6>2</h6></option>
+                                <option value="PB3"><h6>3</h6></option>
+                                <option value="PB4"><h6>4</h6></option>
+                                <option value="PB5"><h6>5</h6></option>
+                                <option value="PB6"><h6>6</h6></option>
+                                <option value="PB7"><h6>7</h6></option>
+                                <option value="PB9"><h6>9</h6></option>
+                                <option value="PB10"><h6>10</h6></option>
+                                <option value="PB12"><h6>12</h6></option>
+                                <option value="PB13"><h6>13</h6></option>
+                                <option value="PB14"><h6>14</h6></option>
+                                <option value="PB20"><h6>20</h6></option>
+                                <option value="PB23"><h6>23</h6></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--------------------------------- จบแถว4 --------------------------------------------->
+
+
+
+                </form>
+            </div>
+        </div>
+        <!--------------------------------------------------------------------------------------------------->
+        <div class="mt-3 text-center">
+            <h6 class="text-center text-muted" onclick="window.open('http://localhost:5000/Log', '', 'width=600,height=800')"><small>version 1.0</small></h6>
+            <h6 class="text-center text-muted" onclick="window.open('http://localhost:5000/Log', '', 'width=600,height=800')"><small>รายละเอียด</small></h6>
+        </div>
+    </body>
+</html>

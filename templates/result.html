@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>TISCO</title>
+        <link rel="icon" href="{{ url_for('static', filename='Logo_TISCO.jpg') }}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='scriptFile.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery-3.3.1.js') }}"></script>
+        <script>
+            function disbtn(){
+                document.getElementById("btn1").disabled = false;
+            }
+        </script>
+
+    </head>
+    <body class="container" onload="resultX()" ondragstart="return false">
+        <!----------------------------- RESULT PART ------------------------------->
+        <div class="container p-3 border border-dark shadow-lg p-3 mt-5 col-lg-12 text-center center-block">
+            <div class="text-center row">
+                <div class="col-lg-2">
+                    <button class="btn btn-dark btn-lg" onclick="window.location.href = 'http://localhost:5000/'">BACK</button>
+                </div>
+                <div class="col-lg-8">
+                    <h1 class="text-center">RESULT</h1>
+                    <h3 class="text-center">รายชื่อลูกค้าที่ระบบทำนายว่าจะเสนอขายสำเร็จ</h3>
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-danger btn-lg" onclick="exportTabletoCSV('Results ')">โหลดเอกสาร</button>
+                </div>
+            </div>
+            <div class="pt-5" id="output" class="col-lg-12 text-center center-block">
+                <table align="center" class="border border-dark border-lg text-center table table-striped col-lg-10" id="tableX"></table>
+            </div>
+        </div>
+        <div class="mt-3 text-center">
+            <h6 class="text-center text-muted" onclick="window.open('http://localhost:5000/Log', '', 'width=600,height=800')"><small>version 1.0</small></h6>
+            <h6 class="text-center text-muted" onclick="window.open('http://localhost:5000/Log', '', 'width=600,height=800')"><small>รายละเอียด</small></h6>
+        </div>
+        <!-------------------------------------------------------------------------->
+    </body>
+    <script>
+        ////////////////////////credit - CodexWorld.com  ///////////////////////////////////////////////////
+        function download_csv(csv, filename){
+            var csvFile;
+            var downloadLink;
+
+            csvFile = new Blob([csv], {type: "text/csv"});
+
+            downloadLink = document.createElement("a");
+            var d = new Date();
+            downloadLink.download = filename+d.toLocaleDateString("en-US")+" "+d.toLocaleTimeString()+".csv";
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+            downloadLink.style.display = "none";
+
+            document.body.appendChild(downloadLink);
+
+            downloadLink.click();
+        }
+
+        function exportTabletoCSV(filename){
+            var csv = [];
+            var rows = document.querySelectorAll("table tr");
+
+            for(var i=0; i<rows.length;i++){
+                var row = [], cols = rows[i].querySelectorAll("td, th");
+                for(var j=0; j<cols.length;j++)
+                    row.push(cols[j].innerText);
+                
+                csv.push(row.join(","));
+            }
+            download_csv(csv.join("\n"), filename);
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function resultX(){////////////////////////////////////////ปริ้นข้อมูลการทำนาย///////////////////////////////////
+            var x = {{ valuxs|safe }}; ///ไม่ใช้แล้ว
+            var k = {{ Acc|safe }};
+            var b = {{ proB|safe }};
+            headtable();
+            for(var j=0; j<x.length; j++){
+                var rowAns = document.createElement("tr");
+                    rowAns.setAttribute("class","table-hover table-striped");
+                var xsc = [j+1, k[j], (b[j]*100).toFixed(3)+"%"];
+                for(var i=0; i<xsc.length; i++){
+                    var cell2 = document.createElement("td");
+                        cell2.setAttribute("class","border border-info border-lg text-dark text-sm table-secondary");
+                    var celltext2 = document.createTextNode(xsc[i]);
+                    cell2.appendChild(celltext2);
+                    rowAns.appendChild(cell2);
+                }
+                document.getElementById("tableX").appendChild(rowAns);
+            }
+        }
+        function headtable(){
+            var rowAns = document.createElement("tr");
+                rowAns.setAttribute("class","table-hover table-striped");
+
+            var xsc = ["ลำดับ", "รหัสลูกค้า", "โอกาส(%)"];
+                for(var i=0; i<xsc.length; i++){
+                    var cell2 = document.createElement("th");
+                        cell2.setAttribute("class","border border-info border-lg text-white text-sm bg-dark");
+                    var celltext2 = document.createTextNode(xsc[i]);
+                    cell2.appendChild(celltext2);
+                    rowAns.appendChild(cell2);
+                }
+                document.getElementById("tableX").appendChild(rowAns);
+        }/////////////////////////////////*******************///////////////////////////////////////////////
+    </script>
+</html>
+
